@@ -1,0 +1,34 @@
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://docs.rubocop.org/rubocop/configuration
+AllCops:
+  # RuboCop のチェック対象から除外するディレクトリ・ファイル
+  Exclude:
+    - "vender/**/*"
+    - "db/**/*"
+    - "bin/*"
+    - "node_modules/**/*"
+    - "config/initializers/devise.rb"
+    - "config/environments/*.rb"
+    - "Gemfile"
+    - "Rakefile"
+ # frozen_string_literal: true というマジックコメントのないファイルの許可
+Style/FrozenStringLiteralComment:
+  Enabled: false
+# コンパクト記法とネスト記法の両方を許可
+Style/ClassAndModuleChildren:
+  Enabled: false
+# ドキュメントの無い public class を許可
+Style/Documentation:
+  Enabled: false
+# config/routes.rb をブロック行数のチェックから除外
+Metrics/BlockLength:
+  Exclude:
+    - "config/routes.rb"
