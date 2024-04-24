@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products, only: %i[index show new create edit update]
   end
+  # URLを変更せずにファイル構成だけ分ける
+  scope module: :customer do
+    resources :products, only: %i[index show]
+  end
 
   get '/up/', to: 'up#index', as: :up
   get '/up/databases', to: 'up#databases', as: :up_databases
