@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: {
-    sessions: 'admin/sessions',
+    sessions: 'admin/sessions'
   }
   devise_for :customers, controllers: {
     sessions: 'customer/sessions',
@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   }
 
   root to: 'pages#home'
-  
+
   namespace :admin do
-    resources :products, only: [:index,:show,:new,:create,:edit,:update]
+    resources :products, only: %i[index show new create edit update]
   end
 
   get '/up/', to: 'up#index', as: :up
