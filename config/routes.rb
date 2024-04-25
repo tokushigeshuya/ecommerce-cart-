@@ -15,6 +15,13 @@ Rails.application.routes.draw do
   # URLを変更せずにファイル構成だけ分ける
   scope module: :customer do
     resources :products, only: %i[index show]
+    resources :cart_items, only: %i[index create destroy] do
+      # cart_item の id が含まれる URL を扱えるようにする
+      member do
+        patch 'increase'
+        patch 'decrease'
+      end
+    end
   end
 
   get '/up/', to: 'up#index', as: :up
