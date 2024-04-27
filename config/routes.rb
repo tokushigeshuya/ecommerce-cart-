@@ -22,6 +22,10 @@ Rails.application.routes.draw do
         patch 'decrease'
       end
     end
+    # stripe
+    resources :checkouts, only: [:create]
+    # Stripe からイベントを受信する HTTP エンドポイント
+    resources :webhooks, only: [:create]
   end
 
   get '/up/', to: 'up#index', as: :up
